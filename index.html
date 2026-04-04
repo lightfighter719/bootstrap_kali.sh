@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Launch Kali Linux on macOS</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 40px;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    h1 {
+      color: #1a1a1a;
+    }
+    pre {
+      background-color: #222;
+      color: #0f0;
+      padding: 15px;
+      overflow-x: auto;
+      border-radius: 5px;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Launch Kali Linux on macOS</h1>
+    <p>Run the following command to bootstrap your Kali container with networking and basic tools:</p>
+    <pre>
+container exec -it kali bash -c "curl -fsSL https://raw.githubusercontent.com/lightfighter719/bootstrap_kali.sh/main/bootstrap_kali.sh | bash"
+    </pre>
+    <p>Here’s a screenshot of the container in action:</p>
+    <img src="https://github.com/user-attachments/assets/64f7bf34-8fc8-486f-8bf2-665c69e79992" alt="Kali Linux on macOS container">
+  </div>
+</body>
+</html>
