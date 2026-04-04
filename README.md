@@ -1,6 +1,5 @@
 ## Launch Kali Linux on macOS
-#### [![Deploy static content to Pages](https://github.com/lightfighter719/bootstrap_kali.sh/actions/workflows/static.yml/badge.svg)](https://github.com/lightfighter719/bootstrap_kali.sh/actions/workflows/static.yml)
-
+#### <a href="https://lightfighter719.github.io/bootstrap_kali.sh/">Launch Kali Linux</a><br>
 ```
 container exec -it kali bash -c "curl -fsSL https://raw.githubusercontent.com/lightfighter719/bootstrap_kali.sh/main/bootstrap_kali.sh | bash"
 
