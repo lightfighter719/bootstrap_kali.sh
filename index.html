@@ -21,6 +21,7 @@
       padding: 15px;
       overflow-x: auto;
       border-radius: 5px;
+      margin: 10px 0;
     }
     img {
       max-width: 100%;
@@ -37,15 +38,55 @@
       border-radius: 10px;
       box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
     }
+    .warning {
+      background: #fff3cd;
+      padding: 10px;
+      border-left: 5px solid #ffc107;
+      margin: 15px 0;
+      border-radius: 5px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Launch Kali Linux on macOS</h1>
-    <p>Run the following command to bootstrap your Kali container with networking and basic tools:</p>
+    <h1>Launch Kali Linux on macOS (Container)</h1>
+
+    <p><strong>Step 1: Create and start the Kali container</strong></p>
     <pre>
-container exec -it kali bash -c "curl -fsSL https://raw.githubusercontent.com/lightfighter719/bootstrap_kali.sh/main/bootstrap_kali.sh | bash"
+container run -it --name kali docker.io/kalilinux/kali-rolling bash
     </pre>
+
+    <p><strong>Step 2: Fix networking (if needed)</strong></p>
+    <pre>
+echo "nameserver 1.1.1.1" > /etc/resolv.conf
+echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+    </pre>
+
+    <p><strong>Step 3: Update the system</strong></p>
+    <pre>
+apt update && apt full-upgrade -y
+    </pre>
+
+    <div class="warning">
+      ⚠️ Avoid installing system/kernel packages (like initramfs, dracut, systemd) inside containers. These can break the container environment.
+    </div>
+
+    <p><strong>Step 4: Install core Kali tools</strong></p>
+    <pre>
+apt install -y kali-tools-top10
+    </pre>
+
+    <p><strong>Optional: Run bootstrap script (safer version)</strong></p>
+    <pre>
+curl -fsSL https://raw.githubusercontent.com/lightfighter719/bootstrap_kali.sh/main/bootstrap_kali.sh \
+| sed -E '/initramfs|dracut|systemd/d' | bash
+    </pre>
+
+    <p><strong>Step 5: Re-enter container later:</strong></p>
+    <pre>
+container exec -it kali bash
+    </pre>
+
     <p>Here’s a screenshot of the container in action:</p>
     <img src="https://github.com/user-attachments/assets/64f7bf34-8fc8-486f-8bf2-665c69e79992" alt="Kali Linux on macOS container">
   </div>
